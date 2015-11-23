@@ -1,0 +1,26 @@
+apply plugin: 'scala'
+
+tasks.withType(ScalaCompile) {
+    scalaCompileOptions.useAnt = false
+}
+
+zinccp {
+	zincClasspath = files('/Users/martin/.m2/repository/com/typesafe/zinc/zinc/0.3.10-SNAPSHOT/zinc-0.3.10-SNAPSHOT.jar', '/Users/martin/.sbt/boot/scala-2.10.5/lib/scala-library.jar', '/Users/martin/.sbt/boot/scala-2.10.5/lib/scala-compiler.jar', '/Users/martin/.sbt/boot/scala-2.10.5/lib/scala-reflect.jar', '/Users/martin/.ivy2/cache/org.scala-sbt/incrementalcompiler_2.10/jars/incrementalcompiler_2.10-0.1.0-M2.jar', '/Users/martin/.ivy2/cache/org.scala-sbt/incrementalcompiler-core_2.10/jars/incrementalcompiler-core_2.10-0.1.0-M2.jar', '/Users/martin/.ivy2/cache/org.scala-sbt/incrementalcompiler-apiinfo_2.10/jars/incrementalcompiler-apiinfo_2.10-0.1.0-M2.jar', '/Users/martin/.ivy2/cache/org.scala-sbt/compiler-interface/jars/compiler-interface-0.1.0-M2.jar', '/Users/martin/.ivy2/cache/org.scala-sbt/util-interface/jars/util-interface-0.1.0-M6.jar', '/Users/martin/.ivy2/cache/org.scala-sbt/incrementalcompiler-classfile_2.10/jars/incrementalcompiler-classfile_2.10-0.1.0-M2.jar', '/Users/martin/.ivy2/cache/org.scala-sbt/io_2.10/jars/io_2.10-1.0.0-M3.jar', '/Users/martin/.ivy2/cache/org.scala-sbt/io_2.10/jars/io_2.10-1.0.0-M3-tests.jar', '/Users/martin/.ivy2/cache/org.scala-sbt/util-logging_2.10/jars/util-logging_2.10-0.1.0-M6-tests.jar', '/Users/martin/.ivy2/cache/org.scala-sbt/util-logging_2.10/jars/util-logging_2.10-0.1.0-M6.jar', '/Users/martin/.ivy2/cache/jline/jline/jars/jline-2.11.jar', '/Users/martin/.ivy2/cache/org.scala-sbt/incrementalcompiler-classpath_2.10/jars/incrementalcompiler-classpath_2.10-0.1.0-M2.jar', '/Users/martin/.ivy2/cache/org.scala-sbt/launcher-interface/jars/launcher-interface-1.0.0-M1.jar', '/Users/martin/.ivy2/cache/org.scala-sbt/util-relation_2.10/jars/util-relation_2.10-0.1.0-M6.jar', '/Users/martin/.ivy2/cache/org.scala-sbt/incrementalcompiler-persist_2.10/jars/incrementalcompiler-persist_2.10-0.1.0-M2.jar', '/Users/martin/.ivy2/cache/org.scala-tools.sbinary/sbinary_2.10/jars/sbinary_2.10-0.4.2.jar', '/Users/martin/.ivy2/cache/org.scala-sbt/incrementalcompiler-compile-core_2.10/jars/incrementalcompiler-compile-core_2.10-0.1.0-M2.jar', '/Users/martin/.ivy2/cache/org.scala-sbt/util-control_2.10/jars/util-control_2.10-0.1.0-M6.jar', '/Users/martin/.ivy2/cache/org.scala-sbt/incrementalcompiler-ivy-integration_2.10/jars/incrementalcompiler-ivy-integration_2.10-0.1.0-M2.jar', '/Users/martin/.ivy2/cache/org.scala-sbt/librarymanagement_2.10/jars/librarymanagement_2.10-0.1.0-M2.jar', '/Users/martin/.ivy2/cache/org.scala-sbt/util-collection_2.10/jars/util-collection_2.10-0.1.0-M3.jar', '/Users/martin/.ivy2/cache/org.scala-sbt.ivy/ivy/jars/ivy-2.3.0-sbt-927bc9ded7f8fba63297cddd0d5a3d01d6ad5d8d.jar', '/Users/martin/.ivy2/cache/com.jcraft/jsch/jars/jsch-0.1.46.jar', '/Users/martin/.ivy2/cache/org.scala-sbt/serialization_2.10/jars/serialization_2.10-0.1.2.jar', '/Users/martin/.ivy2/cache/org.scala-lang.modules/scala-pickling_2.10/jars/scala-pickling_2.10-0.10.1.jar', '/Users/martin/.ivy2/cache/org.scalamacros/quasiquotes_2.10/jars/quasiquotes_2.10-2.0.1.jar', '/Users/martin/.ivy2/cache/org.json4s/json4s-core_2.10/jars/json4s-core_2.10-3.2.10.jar', '/Users/martin/.ivy2/cache/org.json4s/json4s-ast_2.10/jars/json4s-ast_2.10-3.2.10.jar', '/Users/martin/.ivy2/cache/com.thoughtworks.paranamer/paranamer/jars/paranamer-2.6.jar', '/Users/martin/.ivy2/cache/org.spire-math/jawn-parser_2.10/jars/jawn-parser_2.10-0.6.0.jar', '/Users/martin/.ivy2/cache/org.spire-math/json4s-support_2.10/jars/json4s-support_2.10-0.6.0.jar', '/Users/martin/.ivy2/cache/org.scala-sbt/compiler-bridge_2.10/jars/compiler-bridge_2.10-0.1.0-M2-sources.jar', '/Users/martin/.ivy2/cache/org.scala-sbt/compiler-bridge_2.11/jars/compiler-bridge_2.11-0.1.0-M2-sources.jar', '/Users/martin/.ivy2/cache/com.martiansoftware/nailgun-server/jars/nailgun-server-0.9.1.jar')
+}
+
+repositories{
+    mavenCentral()
+    mavenLocal()
+}
+
+dependencies{
+    compile 'org.slf4j:slf4j-api:1.7.5'
+    compile "org.scala-lang:scala-library:2.10.5"
+    testCompile "junit:junit:4.11"
+}
+
+task run(type: JavaExec, dependsOn: classes) {
+    main = 'Main'
+    classpath sourceSets.main.runtimeClasspath
+    classpath configurations.runtime
+}
